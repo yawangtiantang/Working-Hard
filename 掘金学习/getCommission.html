@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+  <meta name="format-detection" content="telephone=no">
+  <title>新用户注册</title>
+  <link rel="stylesheet" href="../resource/css/public.css">
+  <style>
+    html,
+    body {
+      height: 100%;
+      width: 100%;
+    }
+    .show-tip {
+      position: fixed;
+      top: 23% !important;
+      padding: 0.25rem;
+      color: #fff;
+      background: rgba(0, 0, 0, 0.8);
+      border-radius: 5px;
+      z-index: 99999;
+    }
+
+    input::-webkit-input-placeholder {
+      color: #aaaaaa;
+    }
+
+    input::-moz-placeholder {
+      /* Mozilla Firefox 19+ */
+      color: #aaaaaa;
+    }
+
+    input:-moz-placeholder {
+      /* Mozilla Firefox 4 to 18 */
+      color: #aaaaaa;
+    }
+
+    input:-ms-input-placeholder {
+      /* Internet Explorer 10-11 */
+      color: #aaaaaa;
+    }
+
+    .content {
+      height: 100%;
+      width: 100%;
+      background: url("images/commission/bg_h5.png") 0 0 no-repeat;
+      background-size: 100% 100%;
+      overflow: hidden;
+    }
+
+    .output-box {
+      text-align: center;
+    }
+
+    .input-box {
+      overflow: hidden;
+    }
+
+    .input-box h3 {
+      width: 100%;
+      text-align: center;
+      margin: 1.111rem 0 0.958rem;
+      overflow: hidden;
+    }
+
+    .input-box h3>img {
+      width: 2.222rem;
+      height: 0.833rem;
+    }
+
+    .input-item {
+      padding: 0 0.694rem;
+    }
+
+    .input-item li {
+      width: 100%;
+      height: 1.389rem;
+      line-height: 1.389rem;
+      font-size: 0.389rem;
+      padding: 0 0.292rem 0 0.431rem;
+      background: #fff;
+      border-radius: 0.111rem;
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+    }
+
+    .input-item li:nth-child(2) {
+      margin: 0.417rem 0 0.667rem;
+    }
+
+    .input-item li:nth-child(3) {
+      padding: 0;
+    }
+
+    .input-item li input {
+      width: 100%;
+      border: none;
+      outline: none;
+    }
+
+    .input-item li button {
+      border: none;
+      outline: none;
+      padding-left: 0.306rem;
+      color: #ff7801;
+      border-left: 1px solid #ff7801;
+      background: #fff;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+      -webkit-appearance: none;
+    }
+
+    .input-item li:nth-child(3) p {
+      height: 100%;
+      line-height: 1.389rem;
+      font-size: 0.556rem;
+      background: #ff7801;
+      color: #fff;
+      text-align: center;
+      border-radius: 0.111rem;
+    }
+
+    /*.close-icon{
+      display: block;
+      width: 0.533333rem;
+      height:0.533333rem;
+      position: absolute;
+      top:0.373333rem;
+      right: 0.533333rem;
+    }
+    .close-icon img{
+      width: 100%;
+    }*/
+    .input-item .code-item input {
+      width: 65.8%;
+    }
+
+    .code-item span {
+      padding-left: 0.306rem;
+      color: #ff7801;
+      border-left: 1px solid #ff7801;
+    }
+
+    .output-box h2 {
+      text-align: center;
+      font-size: 0.778rem;
+      line-height: 0.778rem;
+      color: #ff7801;
+      margin:0 auto;
+      margin: 1.917rem 0 0.375rem;
+      /* margin:1.917rem 1rem 0.375rem; */
+    }
+
+    .output-box p {
+      text-align: center;
+      font-size: 0.444rem;
+      line-height: 0.444rem;
+      color: #ffffff;
+      margin-bottom: 0.667rem;
+      /* margin:0 1rem 0.667rem; */
+    }
+
+    .info-tip {
+      width: 6.333rem;
+      padding: 0.597rem 0;
+      margin: auto;
+      border-radius: 0.111rem;
+      border: solid 0.014rem #ffffff;
+      font-size: 0.444rem;
+      color: #ffffff;
+    }
+
+    .info-tip i {
+      font-style: normal;
+      color: #ff7801;
+    }
+
+    .download {
+      width: 6.333rem;
+      height: 1.222rem;
+      margin: 1.389rem auto 0.389rem;
+      line-height: 1.222rem;
+      background-color: #ff7801;
+      border-radius: 0.111rem;
+      font-size: 0.444rem;
+      color: #f2f2f2;
+    }
+
+    .download a {
+      color: #FFF;
+    }
+
+    .rule {
+      width: 1.569rem;
+      height: 0.403rem;
+      text-decoration: underline;
+      font-size: 0.389rem;
+      color: #ffffff;
+    }
+
+    .wxtip {
+      background: rgba(0, 0, 0, 0.8);
+      text-align: center;
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 998;
+      display: none;
+    }
+
+    .wxtip-icon {
+      width: 52px;
+      height: 67px;
+      background: url(http://img.caibaojian.com/uploads/2016/01/weixin-tip.png) no-repeat;
+      display: block;
+      position: absolute;
+      right: 20px;
+      top: 20px;
+    }
+
+    .wxtip-txt {
+      margin-top: 107px;
+      color: #fff;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+
+<body>
+  <section class="content">
+    <!--领取奖励显示页-->
+    <div class="input-box" id="inputBox">
+      <h3><img src="images/commission/h5_logo.png" alt=""></h3>
+      <ul class="input-item">
+        <li>
+          <input type="tel" class="phone" id="phone" maxlength="11" placeholder="请输入手机号码">
+          <!--<span class="close-icon" style="display: none;" onclick="clearInput()"><img src="../bmkpClient/images/cancel@2x.png" /></span>-->
+        </li>
+        <li class="code-item">
+          <input type="text" class="code" id="code" placeholder="请输入短信验证码">
+          <button class="code-btn" id="codeBtn" onclick="getvcode(60)">获取验证码</button>
+        </li>
+        <li onclick="registe()" id="registerBtn">
+          <p>注册</p>
+        </li>
+      </ul>
+    </div>
+
+    <!--点击注册成功后才显示-->
+    <div class="output-box" style="display: none;" id="outBox">
+      <h2 style="text-align: center">恭喜您！</h2>
+      <!-- <p>您已获得总共价值30元的优惠券</p> -->
+      <p style="text-align: center">您已注册成功</p>
+      <!-- <div class="info-tip">请用<i>18338482721</i>的手机号<br />登录斑马快跑APP领取优惠券</div> -->
+      <div class="info-tip">请用<i style="color:#ff7801!important">18338482721</i>的手机号<br />登录斑马快跑APP</div>
+      <!-- <div class="download" onclick='downApp()'>下载斑马快跑APP</div> -->
+      <div class="download"><a href="https://a.app.qq.com/o/simple.jsp?pkgname=cn.bmkp.app&fromcase=40002">下载斑马快跑APP</a>
+      </div>
+
+      <!-- <a class="rule" href="">活动规则</a> -->
+    </div>
+  </section>
+  <div class="wxtip" id="JweixinTip">
+    <span class="wxtip-icon"></span>
+    <p class="wxtip-txt">点击右上角<br />选择在浏览器中打开</p>
+  </div>
+  <script src="../resource/js/flexible.js"></script>
+  <script src="../resource/js/jquery-2.1.4.min.js"></script>
+  <script src="../resource/js/jquery.zwtip.js"></script>
+  <script src="../resource/js/BM.config.js"></script>
+  <script src="../resource/js/getJSON.js"></script>
+  <script type="text/javascript" src="../resource/js/activity100.js"></script>
+  <script type="text/javascript" src="../resource/js/share.js"></script>
+  <script type="text/javascript" src="../resource/js/getParams.js"></script>
+  <script>
+    $(document).ready(function () {
+
+    })
+
+    // $(function(){
+    //   //获取url后携带的参数
+    //   var id
+    //   var shardPhone
+    //   var params = getParams();
+    //   id = params.id;
+    //   shardPhone= params.phone;
+    //   alert("\r\n" + JSON.stringify(params, null, 4) + "\r\n")
+    // })
+
+    // 获取验证码
+    function getvcode(i) {
+     
+      var params = getParams();
+      // alert("\r\n" + JSON.stringify(params, null, 4) + "\r\n")
+      
+      
+      var phone = $.trim($("#phone").val());
+     
+      if (!$(".phone").val()) {
+        $.fn.zwTip({
+          msg: '请输入手机号'
+        });
+        return
+      }
+      if ($(".phone").val() > 0 && $(".phone").val().length != 11) {
+        $.fn.zwTip({
+          msg: '请输入正确的手机号'
+        });
+        return
+      }
+      if (!!phone) {
+        if (i <= 0) {
+          $("#codeBtn").text("获取验证码");
+          $("#codeBtn").css("color", "#ee761c");
+        } else {
+          var str = $("#codeBtn").text();
+          if (str.indexOf("s") <= 0) {
+            var param = {
+              "phone": phone
+            };
+            
+         
+           
+            BM.getJSON('POST', BM.ACTION.SVERIFYCODE, JSON.stringify(param), '', function (data) {
+               
+              var result = data;
+              if (result.success) {
+                console.log(result)
+                countDown(i);
+              } else {
+                $.fn.zwTip({
+                  error: 1,
+                  msg: data.msg
+                })
+              }
+            });
+          } else {
+            return;
+          }
+        }
+      } else {
+        $.fn.zwTip({
+          error: 1,
+          msg: '请输入手机号码'
+        });
+        return;
+      }
+    }
+
+
+//     注册
+function registe(){
+  $('.input-box').css('display', 'none')
+  $('.output-box').css('display', 'block')
+}
+    // function registe() {
+     
+    //   //获取url后携带的参数
+    //   var token
+    //   var id
+    //   var shardPhone
+    //   var params = getParams();
+    //   id = params.id;
+    //   shardPhone= params.phone;
+    //   token=params.token
+    //   //调用app获取用户手机号的方法
+
+    //   //  if (BM.machine() == "Android") {
+
+    //   //  shardPhone = window.app.getCustomPhone()
+
+    //   //   }
+    //   //   if (BM.machine() == "IOS") {
+
+    //   //   shardPhone=  window.app.getPhoneNum()
+    //   //   }
+    //   var phone = $.trim($("#phone").val());
+    //   var code = $("#code").val();
+    //   if (!$(".phone").val()) {
+    //     $.fn.zwTip({
+    //       msg: '请输入手机号'
+    //     });
+    //     return
+    //   }
+    //   if ($(".phone").val() > 0 && $(".phone").val().length != 11) {
+    //     $.fn.zwTip({
+    //       msg: '请输入正确的手机号'
+    //     });
+    //     return
+    //   }
+    //   if (!$(".code").val()) {
+    //     $.fn.zwTip({
+    //       msg: '请输入验证码'
+    //     });
+    //     return
+    //   }
+
+    //   var param = {
+    //     'id': id,
+    //     'shardPhone': shardPhone,
+    //     "code": code,
+    //     "phone": phone,
+    //     "shardToken": token
+    //   }
+
+    //   BM.getJSON('POST', BM.ACTION.SHAREREGISTER, JSON.stringify(param), '', function (data) {
+    //     // $.fn.zwTip({error: 1, msg: '请求失败' || e.msg || e.responseText});
+    //     // }, function (data) {
+    //     var result = data;
+    //     if (result.code == 20000) {
+    //       // console.log(2222)
+    //       // console.log(result)
+    //       // alert(333)
+    //       $.fn.zwTip({
+    //         msg: result.msg
+    //         // msg: '你成功啦'
+    //       });
+    //        $('.input-box').hide()
+    //       $('.output-box').show()
+    //       // $('.input-box').css('display', 'none')
+    //       // $('.output-box').css('display', 'block')
+    //       $('.info-tip i').text(param.phone)
+    //     } else {
+
+    //       var msg = data.msg;
+    //       $.fn.zwTip({
+    //         error: 1,
+    //         msg: result.msg
+    //       });
+    //     }
+    //   });
+    // }
+    function countDown(i) { //倒计时
+      console.log("1111")
+      //    $(this).addClass("on");
+
+      $(".code-btn").attr("disabled", true);
+      var timer = setInterval(function () {
+        if (i == 0) {
+          clearInterval(timer);
+          $(".code-btn").attr("disabled", false);
+          $(".code-btn").text("获取验证码");
+          //        $("input").removeClass("on");
+        } else {
+          $('.code-btn').text(i + "s后重试");
+          i--;
+        }
+      }, 1000);
+    }
+
+    // function btnTime(i) {
+    //     if (i < 0 || isGet) {
+    //       $("#codeBtn").text("获取验证码");
+    //       $("#codeBtn").css("color", "#ee761c");
+    //       return;
+    //     }
+    //     setTimeout(function () {
+    //       $("#codeBtn").text(i+"s后重试");
+    //       $("#codeBtn").css("color", "#808080");
+    //       i--;
+    //       btnTime(i);
+    //     }, 1000)
+    //   }
+
+
+
+
+    //非应用宝的时候判断是安卓还是ios走不同的下载路径
+    // function downApp () {
+    //   var isWeixin = /micromessenger\s*\//i.test(navigator.userAgent);
+    //   var isQQ = /qq\s*\//i.test(navigator.userAgent);
+    //   if(BM.machine() == "IOS"){
+    //     window.location.href = "itms-apps://itunes.apple.com/app/id1040412314";
+    //   }
+
+    //   if(BM.machine() == "Android"){  // 安卓在微信和QQ里面点击下载APP无反应 须给出提示
+    //     if(isWeixin || isQQ){
+    //       window.event? window.event.returnValue = false : e.preventDefault();
+    //       $('#JweixinTip').css("display","block");
+    //       $('#JweixinTip').on("click",function(){
+    //         this.style.display='none';
+    //       });
+    //     }else{
+    //       window.location.href = "market://details?id=cn.bmkp.app"; /*安卓应用商店*/
+    //     }
+    //   }
+    // }
+    //非应用宝的时候判断是安卓还是ios走不同的下载路径
+  </script>
+</body>
+
+</html>
